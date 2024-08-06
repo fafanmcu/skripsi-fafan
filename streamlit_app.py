@@ -10,5 +10,6 @@ mapping = {1: 'Positif', 2: 'Negatif'}
 # mengubah nilai kolom dan menghapus sentimen yang kosong
 df = data.dropna(subset=['Sentimen'])
 df['Sentimen'] = df['Sentimen'].map(mapping)
+# mengurutkan nomer index
 df = df.reset_index(drop=True)
 df
