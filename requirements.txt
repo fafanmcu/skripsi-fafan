@@ -5,5 +5,4 @@ scikit-learn
 sastrawi
 nltk
 wordcloud
-matplotlib-pyplot
 seaborn
