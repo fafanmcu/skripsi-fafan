@@ -2,7 +2,6 @@ streamlit
 pandas
 numpy
 scikit-learn
-string
 sastrawi
 nltk
 wordcloud
