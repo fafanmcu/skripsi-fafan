@@ -6,3 +6,4 @@ sastrawi
 nltk
 wordcloud
 seaborn
+openpyxl
