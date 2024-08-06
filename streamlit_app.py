@@ -12,4 +12,4 @@ df = data.dropna(subset=['Sentimen'])
 df['Sentimen'] = df['Sentimen'].map(mapping)
 # mengurutkan nomer index
 df = df.reset_index(drop=True)
-df
+df = df.index + 1
