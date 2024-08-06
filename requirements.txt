@@ -1,1 +1,11 @@
-streamlit>=1.26.0
+streamlit
+pandas
+numpy
+scikit-learn
+re
+string
+sastrawi
+nltk
+wordcloud
+matplotlib-pyplot
+seaborn
