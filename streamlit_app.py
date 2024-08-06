@@ -5,6 +5,4 @@ st.title('🎈 Analisis Sentimen Pemindahan Ibu Kota Negara ke Ibu Kota Nusantar
 st.info('Fafan Maulana Cahya Utama')
 
 data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx')
-
-
-
+data
