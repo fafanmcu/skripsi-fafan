@@ -4,7 +4,7 @@ import pandas as pd
 st.title('🎈 Analisis Sentimen Pemindahan Ibu Kota Negara ke Ibu Kota Nusantara Menggunakan Metode Naive Bayes')
 st.info('Fafan Maulana Cahya Utama')
 
-data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx', index = False)
+data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx')
 
 mapping = {1: 'Positif', 2: 'Negatif'}
 # mengubah nilai kolom dan menghapus sentimen yang kosong
