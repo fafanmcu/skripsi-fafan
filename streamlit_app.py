@@ -17,4 +17,4 @@ df.index = df.index + 1
 
 # menghapus data duplikat
 df = df.drop_duplicates(subset=['Stemming'])
-st.dataframe(df)
+df
