@@ -17,9 +17,8 @@ df.index = df.index + 1
 
 # menghapus data duplikat
 df = df.drop_duplicates(subset=['Stemming'])
-df
 
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
 tab1.write("this is tab 1")
-tab2.write("this is tab 2")
+tab2.write(df)
