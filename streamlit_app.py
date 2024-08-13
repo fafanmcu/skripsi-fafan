@@ -26,7 +26,7 @@ df = df.drop_duplicates(subset=['Stemming'])
 
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
-    with tab1:
-        st.write('test')
-    with tab2:
-        df
+with tab1:
+    st.write('test')
+with tab2:
+    df
