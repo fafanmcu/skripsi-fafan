@@ -24,6 +24,12 @@ df.index = df.index + 1
 # menghapus data duplikat
 df = df.drop_duplicates(subset=['Stemming'])
 
+nav1, nav2 = st.columns(2)
+with nav1:
+    st.write('test 1')
+with nav2:
+    st.write('test 2')
+
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
 with tab1:
