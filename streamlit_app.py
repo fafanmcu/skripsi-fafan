@@ -1,8 +1,11 @@
 import streamlit as st
 import pandas as pd
 
-st.title('🎈 Analisis Sentimen Pemindahan Ibu Kota Negara ke Ibu Kota Nusantara Menggunakan Metode Naive Bayes')
-st.info('Fafan Maulana Cahya Utama')
+st.set_page_config(
+    page_title="Dashboard Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu kota Nusantara",
+    page_icon=":glass:",
+    layout="wide",  # Use "wide" layout for a full-size dashboard
+)
 
 data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx')
 
