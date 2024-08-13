@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(
     page_title="Dashboard Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu kota Nusantara",
-    page_icon=":glass:",
+    page_icon=":eyes:",
     layout="wide",  # Use "wide" layout for a full-size dashboard
 )
 
