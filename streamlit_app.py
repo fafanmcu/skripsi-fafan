@@ -7,6 +7,9 @@ st.set_page_config(
     layout="wide",  # Use "wide" layout for a full-size dashboard
 )
 
+st.header('Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu Kota Nusantara')
+st.markdown("""---""")
+
 data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx')
 
 # mengubah nilai kolom dan menghapus sentimen yang kosong
