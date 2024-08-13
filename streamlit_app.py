@@ -26,7 +26,7 @@ df = df.drop_duplicates(subset=['Stemming'])
 
 nav1, nav2 = st.columns(2)
 with nav1:
-    st.write('test 1')
+    jenis_sentimen = st.multiselect("Jenis Sentimen", options = df["Sentimen"].unique(), default = df["Sentimen"].unique())
 with nav2:
     st.write('test 2')
 
