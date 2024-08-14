@@ -41,7 +41,7 @@ with nav2:
 output = (df['Tgl'] >= start_date) & (df['Tgl'] <= end_date)
 
 # filter sumber, tamggal dan sentiment
-df_selection = df.query(sentiment == @jenis_sentimen").loc[output]
+df_selection = df.query(Sentimen == @jenis_sentimen").loc[output]
 
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
