@@ -28,7 +28,20 @@ nav1, nav2 = st.columns(2)
 with nav1:
     jenis_sentimen = st.multiselect("Jenis Sentimen", options = df["Sentimen"].unique(), default = df["Sentimen"].unique())
 with nav2:
-    st.write('test 2')
+    df['Tgl'] = pd.to_datetime(df['created_at']).dt.date
+    start = df['Tgl'].min()
+    finish = df['Tgl'].max()
+    start_date, end_date = st.date_input('Rentang Waktu',
+                               (start, finish), 
+                               start, 
+                               finish,
+                               format="YYYY.MM.DD")
+
+# filter Tgl
+output = (df['Tgl'] >= start_date) & (df['Tgl'] <= end_date)
+
+# filter sumber, tamggal dan sentiment
+df_selection = df.query(sentiment == @sentiment_data").loc[output]
 
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
