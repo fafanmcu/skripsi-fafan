@@ -46,6 +46,17 @@ df_selection = df.query("Sentimen == @jenis_sentimen").loc[output]
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
 with tab1:
-    st.write('test')
+    pos = df_selection['Sentimen'].loc[df_selection['Sentimen'] == 'Positif']
+    neg = df_selection['sentiment'].loc[df_selection['sentiment'] == 'Negatif']
+    count = len(df_selection)
+    
+    b1, b2, b3 = st.columns([0.45,0.45,0.45])
+    b1.metric("Jumlah Komentar", len(pos), "+ Positif")
+    b2.metric("Jumlah Komentar", len(neg), "- Negatif")
+    b3.metric("Jumlah", count)
+
+    # garis 
+    st.markdown("""---""")
+    
 with tab2:
     df_selection
