@@ -47,8 +47,8 @@ df_selection = df.query("Sentimen == @jenis_sentimen").loc[output]
 # Insert containers separated into tabs:
 tab1, tab2 = st.tabs(["Ringkasan", "Dataset"])
 with tab1:
-    pos = df_selection['Sentimen'].loc[df_selection['Sentimen'] == 'Positif']
-    neg = df_selection['Sentimen'].loc[df_selection['Sentimen'] == 'Negatif']
+    pos = df_selection[df_selection['Sentimen'] == 'Positif']
+    neg = df_selection[df_selection['Sentimen'] == 'Negatif']
     count = len(df_selection)
     
     b1, b2, b3 = st.columns([0.45,0.45,0.45])
