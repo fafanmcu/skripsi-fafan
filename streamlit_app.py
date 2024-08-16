@@ -159,7 +159,7 @@ print_metrics(y_test, y_pred, fold, "TF-IDF")
 fold += 1
         
 #TF
-st.subtittle("TF")
+st.tittle("TF")
 tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1","K-fold 2","K-fold 3","K-fold 4", "k-fold 5"])
 with tab5:
     fold = 1
