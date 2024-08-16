@@ -68,9 +68,9 @@ with nav3:
     color_custom = ['#3ca9ee', '#e14b32']
     Sentimen = df_selection['Sentimen'].value_counts()
     fig_sentiment = go.Figure()
-    
-    neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
+
     pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
+    neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
         
     if not neg_df.empty:
         color = ['#e14b32']
