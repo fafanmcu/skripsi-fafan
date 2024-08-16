@@ -141,12 +141,12 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
 
     plt.figure(figsize=(4, 3))  # Smaller figure size
     sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'],
-                annot_kws={"size": 10}, cbar_kws={"shrink": .8})  # Adjust text size
-    plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}', fontsize=12)
-    plt.xlabel('Predicted label', fontsize=10)
-    plt.ylabel('True label', fontsize=10)
-    plt.xticks(fontsize=8)
-    plt.yticks(fontsize=8)
+                annot_kws={"size": 8}, cbar_kws={"shrink": .6})  # Adjust text size
+    plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}', fontsize=10)
+    plt.xlabel('Predicted label', fontsize=8)
+    plt.ylabel('True label', fontsize=8)
+    plt.xticks(fontsize=6)
+    plt.yticks(fontsize=6)
     st.pyplot(plt)
 
 # Tabs for TF and TF-IDF
