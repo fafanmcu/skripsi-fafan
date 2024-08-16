@@ -60,3 +60,9 @@ with tab1:
     
 with tab2:
     df_selection
+
+nav3, nav4 = st.columns(2)
+with nav3:
+    st.write("Ini Nav 1")
+with nav4:
+    st.write("Ini Nav2")
