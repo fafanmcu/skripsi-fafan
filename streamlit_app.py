@@ -83,7 +83,7 @@ with nav3:
                                         marker_colors=color, textinfo='label+percent', 
                                         hoverinfo='value', hole=0.3))
     if not neg_df.empty and not pos_df.empty:
-        fig_sentiment.add_trace(go.Pie(labels=['Positif','Negatif'], values=Sentimen,
+        fig_sentiment.add_trace(go.Pie(labels=['Negatif','Positif'], values=Sentimen,
                                         marker_colors=color_custom, textinfo='label+percent',
                                         hoverinfo='value', hole=0.3))
         
