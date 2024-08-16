@@ -146,7 +146,7 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     st.text(classification_report(y_test, y_pred))
 
     # Adjust the confusion matrix plot size
-    plt.figure(figsize=(3, 2))  # Smaller figure size
+    plt.figure(figsize=(2, 1.5))  # Smaller figure size
     sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
     plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}')
     plt.xlabel('Predicted label')
