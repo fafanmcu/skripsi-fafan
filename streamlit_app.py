@@ -135,15 +135,18 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     recall = recall_score(y_test, y_pred, average='weighted')
     f1 = f1_score(y_test, y_pred, average='weighted')
 
-    st.write(f"\nConfusion Matrix Fold {fold}")
-    st.write(cm)
-    st.write(f"Accuracy: {accuracy}")
-    st.write(f"Precision: {precision}")
-    st.write(f"Recall: {recall}")
-    st.write(f"F1-Score: {f1}")
-    st.write(f"\nClassification Report:\n", classification_report(y_test, y_pred))
+    st.markdown(f"### Confusion Matrix Fold {fold}")
+    st.write(f"**Accuracy:** {accuracy:.4f}")
+    st.write(f"**Precision:** {precision:.4f}")
+    st.write(f"**Recall:** {recall:.4f}")
+    st.write(f"**F1-Score:** {f1:.4f}")
 
-    plt.figure(figsize=(2, 1.5))
+    # Display classification report
+    st.write("**Classification Report:**")
+    st.text(classification_report(y_test, y_pred))
+
+    # Adjust the confusion matrix plot size
+    plt.figure(figsize=(3, 2))  # Smaller figure size
     sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
     plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}')
     plt.xlabel('Predicted label')
