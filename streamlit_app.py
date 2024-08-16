@@ -109,7 +109,7 @@ with nav4:
 
 st.markdown("""---""")
 kf_fold = st.selectbox("Pilih Jumlah Lipatan","1,2,3,4,5")
-tab3, tab4 = st.tabs(["TF, TF-IDF"])
+tab3, tab4 = st.tabs(["TF", "TF-IDF"])
 with tab3:
     st.write("TF")
 with tab4:
