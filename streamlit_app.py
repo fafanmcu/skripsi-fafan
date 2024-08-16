@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 st.set_page_config(
     page_title="Dashboard Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu kota Nusantara",
