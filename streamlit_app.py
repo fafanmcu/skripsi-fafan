@@ -94,17 +94,8 @@ with nav3:
 
 
 with nav4:
-    # Filter baris dengan sentimen Positif
-    df_positive = df[df['Sentimen'] == 'Positif']
-
-    # Gabungkan semua token yang sudah di-stemming ke dalam satu string dan hilangkan tanda petik
-    all_words = ' '.join(df_positive['Stemming'].explode()).replace("'", "")
-
-    # Buat word cloud
-    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_words)
-
-    # Tampilkan word cloud
-    plt.figure(figsize=(10, 5))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    plt.show()
+    tgl_counts = df_selection['created_at'].value_counts().reset_index()
+    tgl_counts.columns = ['Tanggal', 'Jumlah']
+    custom_colors = ['#dc6e55']
+    fig_tgl = px.area(tgl_counts, x='Tgl', y='Count', title="Rentang Waktu Komentar", color_discrete_sequence=custom_colors)
+    st.plotly_chart(fig_tgl, use_container_width=True)
