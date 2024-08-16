@@ -4,6 +4,12 @@ import plotly.graph_objects as go
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import plotly.express as px
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import cross_val_score, KFold, train_test_split
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, recall_score, f1_score
+import seaborn as sns
+
 
 st.set_page_config(
     page_title="Dashboard Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu kota Nusantara",
