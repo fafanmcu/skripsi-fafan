@@ -145,12 +145,14 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     st.write("**Classification Report:**")
     st.text(classification_report(y_test, y_pred))
 
-    # Adjust the confusion matrix plot size
-    plt.figure(figsize=(1, 0.75))  # Smaller figure size
-    sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
-    plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}')
-    plt.xlabel('Predicted label')
-    plt.ylabel('True label')
+    plt.figure(figsize=(4, 3))  # Smaller figure size
+    sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'],
+                annot_kws={"size": 10}, cbar_kws={"shrink": .8})  # Adjust text size
+    plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}', fontsize=12)
+    plt.xlabel('Predicted label', fontsize=10)
+    plt.ylabel('True label', fontsize=10)
+    plt.xticks(fontsize=8)
+    plt.yticks(fontsize=8)
     st.pyplot(plt)
 
 # Manually split the data for each fold
