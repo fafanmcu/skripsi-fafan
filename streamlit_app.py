@@ -119,13 +119,8 @@ kf = KFold(n_splits=5, shuffle=True, random_state=42)
 # Model definition
 model = MultinomialNB()
 
-# TF Processing
-st.write("TF")
-countVectorizer = CountVectorizer()
-tf = countVectorizer.fit_transform(X).toarray()
-
-# Create tabs for each fold
-tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1", "K-fold 2", "K-fold 3", "K-fold 4", "K-fold 5"])
+# Splitting data once for all folds
+splits = list(kf.split(X))
 
 # Function to print and plot metrics
 def print_metrics(y_test, y_pred, fold, title_suffix):
@@ -141,11 +136,10 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     st.write(f"**Recall:** {recall:.4f}")
     st.write(f"**F1-Score:** {f1:.4f}")
 
-    # Display classification report
     st.write("**Classification Report:**")
     st.text(classification_report(y_test, y_pred))
 
-    plt.figure(figsize=(2, 1.5))  # Smaller figure size
+    plt.figure(figsize=(4, 3))  # Smaller figure size
     sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'],
                 annot_kws={"size": 10}, cbar_kws={"shrink": .8})  # Adjust text size
     plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}', fontsize=12)
@@ -155,11 +149,16 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     plt.yticks(fontsize=8)
     st.pyplot(plt)
 
-# Manually split the data for each fold
-splits = list(kf.split(tf))
+# Tabs for TF and TF-IDF
+tab1, tab2 = st.tabs(["TF", "TF-IDF"])
 
-with tab5:
-    fold = 1
+with tab1:
+    st.write("TF")
+    countVectorizer = CountVectorizer()
+    tf = countVectorizer.fit_transform(X).toarray()
+
+    fold_choice = st.selectbox("Pilih K-fold untuk TF", [1, 2, 3, 4, 5])
+    fold = fold_choice
     train_index, test_index = splits[fold - 1]
     X_train, X_test = tf[train_index], tf[test_index]
     y_train, y_test = y.iloc[train_index], y.iloc[test_index]
@@ -169,46 +168,18 @@ with tab5:
 
     print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
 
-with tab6:
-    fold = 2
+with tab2:
+    st.write("TF-IDF")
+    tfidfVectorizer = TfidfVectorizer(use_idf=True, smooth_idf=True)
+    tfidf = tfidfVectorizer.fit_transform(X).toarray()
+
+    fold_choice = st.selectbox("Pilih K-fold untuk TF-IDF", [1, 2, 3, 4, 5])
+    fold = fold_choice
     train_index, test_index = splits[fold - 1]
-    X_train, X_test = tf[train_index], tf[test_index]
+    X_train, X_test = tfidf[train_index], tfidf[test_index]
     y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
-
-with tab7:
-    fold = 3
-    train_index, test_index = splits[fold - 1]
-    X_train, X_test = tf[train_index], tf[test_index]
-    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-
-    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
-
-with tab8:
-    fold = 4
-    train_index, test_index = splits[fold - 1]
-    X_train, X_test = tf[train_index], tf[test_index]
-    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-
-    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
-
-with tab9:
-    fold = 5
-    train_index, test_index = splits[fold - 1]
-    X_train, X_test = tf[train_index], tf[test_index]
-    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-
-    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+    print_metrics(y_test, y_pred, fold, "TF-IDF")
