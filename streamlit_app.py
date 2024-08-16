@@ -65,19 +65,19 @@ with tab2:
 nav3, nav4 = st.columns(2)
 with nav3:
         # Visualisasi hasil sentiment
-    color_custom = ['#3ca9ee', '#e14b32']
+    color_custom = ['#e14b32', '#3ca9ee']
     Sentimen = df_selection['Sentimen'].value_counts()
     fig_sentiment = go.Figure()
 
     pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
     neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
         
-    if not pos_df.empty:
+    if not neg_df.empty:
         color = ['#e14b32']
         fig_sentiment.add_trace(go.Pie(labels=['Negatif'], values=neg_df['Sentimen'].value_counts(), 
                                         marker_colors=color, textinfo='label+percent', 
                                         hoverinfo='label+value', hole=0.3))
-    if not neg_df.empty:
+    if not pos_df.empty:
         color = ['#3ca9ee']
         fig_sentiment.add_trace(go.Pie(labels=['Positif'], values=pos_df['Sentimen'].value_counts(), 
                                         marker_colors=color, textinfo='label+percent', 
