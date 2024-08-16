@@ -149,8 +149,8 @@ tfidf = tfidfVectorizer.fit_transform(X).toarray()
 
 fold = 1
 for train_index, test_index in kf.split(tfidf):
-X_train, X_test = tfidf[train_index], tfidf[test_index]
-y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+    X_train, X_test = tfidf[train_index], tfidf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
