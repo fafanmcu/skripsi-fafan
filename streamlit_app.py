@@ -111,5 +111,6 @@ st.markdown("""---""")
 kf_fold = st_selection("Pilih Jumlah Lipatan")
 tab3, tab4 = st.tabs(["TF, TF-IDF"])
 with tab3:
-    
-                     
+    st.write("TF")
+with tab4:
+    st.write(TF-IDF)
