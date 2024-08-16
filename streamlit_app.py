@@ -100,3 +100,5 @@ with nav4:
     custom_colors = ['#dc6e55']
     fig_tgl = px.area(tgl_counts, x='created_at', y='Count', title="Rentang Waktu Komentar", color_discrete_sequence=custom_colors)
     st.plotly_chart(fig_tgl, use_container_width=True)
+
+   st.markdown("""---""")
