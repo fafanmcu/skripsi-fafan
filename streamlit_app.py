@@ -71,20 +71,20 @@ with nav3:
     neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
     pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
         
-        if not neg_df.empty:
-            color = ['#e14b32']
-            fig_sentiment.add_trace(go.Pie(labels=['Negatif'], values=neg_df['sentimen'].value_counts(), 
+    if not neg_df.empty:
+        color = ['#e14b32']
+        fig_sentiment.add_trace(go.Pie(labels=['Negatif'], values=neg_df['sentimen'].value_counts(), 
                                            marker_colors=color, textinfo='label+percent', 
                                            hoverinfo='label+value', hole=0.3))
-        if not pos_df.empty:
-            color = ['#3ca9ee']
-            fig_sentiment.add_trace(go.Pie(labels=['Positif'], values=pos_df['Sentimen'].value_counts(), 
+    if not pos_df.empty:
+        color = ['#3ca9ee']
+        fig_sentiment.add_trace(go.Pie(labels=['Positif'], values=pos_df['Sentimen'].value_counts(), 
                                            marker_colors=color, textinfo='label+percent', 
                                            hoverinfo='value', hole=0.3))
-        if not neg_df.empty and not pos_df.empty:
-            fig_sentiment.add_trace(go.Pie(labels=['Positif','Negatif'], values=sentiment,
-                                      marker_colors=color_custom, textinfo='label+percent',
-                                      hoverinfo='value', hole=0.3))
+    if not neg_df.empty and not pos_df.empty:
+        fig_sentiment.add_trace(go.Pie(labels=['Positif','Negatif'], values=sentiment,
+        marker_colors=color_custom, textinfo='label+percent',
+        hoverinfo='value', hole=0.3))
         
         fig_sentiment.update_layout(title=f"Persentase Sentimen Twitter")
         st.plotly_chart(fig_sentiment, use_container_width=True)
