@@ -72,17 +72,17 @@ with nav3:
     pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
     neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
         
-    if not neg_df.empty:
+    if not neg.empty:
         color = ['#3ca9ee']
         fig_sentiment.add_trace(go.Pie(labels=['Positif'], values=neg_df['Sentimen'].value_counts(), 
                                         marker_colors=color, textinfo='label+percent', 
                                         hoverinfo='label+value', hole=0.3))
-    if not pos_df.empty:
+    if not pos.empty:
         color = ['#e14b32']
         fig_sentiment.add_trace(go.Pie(labels=['Negatif'], values=pos_df['Sentimen'].value_counts(), 
                                         marker_colors=color, textinfo='label+percent', 
                                         hoverinfo='value', hole=0.3))
-    if not pos_df.empty and not pos_df.empty:
+    if not pos.empty and not pos.empty:
         fig_sentiment.add_trace(go.Pie(labels=['Negatif','Positif'], values=Sentimen,
                                         marker_colors=color_custom, textinfo='label+percent',
                                         hoverinfo='value', hole=0.3))
