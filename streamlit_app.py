@@ -113,8 +113,19 @@ st.markdown("""---""")
 X = df['Stemming']
 y = df['Sentimen']
 
-# Define KFold cross-validation
+# Define KFold cross-validation with fixed 5 splits
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# Model definition
+model = MultinomialNB()
+
+# TF Processing
+st.write("TF")
+countVectorizer = CountVectorizer()
+tf = countVectorizer.fit_transform(X).toarray()
+
+# Create tabs for each fold
+tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1", "K-fold 2", "K-fold 3", "K-fold 4", "K-fold 5"])
 
 # Function to print and plot metrics
 def print_metrics(y_test, y_pred, fold, title_suffix):
@@ -139,35 +150,60 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     plt.ylabel('True label')
     st.pyplot(plt)
 
-model = MultinomialNB()
-countVectorizer = CountVectorizer()
-tf = countVectorizer.fit_transform(X).toarray()
+# Manually split the data for each fold
+splits = list(kf.split(tf))
 
-st.write("TF-IDF")
-tfidfVectorizer = TfidfVectorizer(use_idf=True, smooth_idf=True)
-tfidf = tfidfVectorizer.fit_transform(X).toarray()
-
-fold = 1
-for train_index, test_index in kf.split(tfidf):
-    X_train, X_test = tfidf[train_index], tfidf[test_index]
-    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-
-print_metrics(y_test, y_pred, fold, "TF-IDF")
-fold += 1
-        
-#TF
-st.write("TF")
-tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1","K-fold 2","K-fold 3","K-fold 4", "k-fold 5"])
 with tab5:
     fold = 1
-    for train_index, test_index in kf.split(tf):
-        X_train, X_test = tf[train_index], tf[test_index]
-        y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+    train_index, test_index = splits[fold - 1]
+    X_train, X_test = tf[train_index], tf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
 
-        print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+
+with tab6:
+    fold = 2
+    train_index, test_index = splits[fold - 1]
+    X_train, X_test = tf[train_index], tf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+
+with tab7:
+    fold = 3
+    train_index, test_index = splits[fold - 1]
+    X_train, X_test = tf[train_index], tf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+
+with tab8:
+    fold = 4
+    train_index, test_index = splits[fold - 1]
+    X_train, X_test = tf[train_index], tf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+
+with tab9:
+    fold = 5
+    train_index, test_index = splits[fold - 1]
+    X_train, X_test = tf[train_index], tf[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
