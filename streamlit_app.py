@@ -108,14 +108,13 @@ with nav4:
     st.plotly_chart(fig_tgl, use_container_width=True)
 
 st.markdown("""---""")
-kf_fold = int(st.selectbox("Pilih Jumlah Lipatan", ("2", "3", "4", "5")))
 
 # Prepare data
 X = df['Stemming']
 y = df['Sentimen']
 
 # Define KFold cross-validation
-kf = KFold(n_splits=kf_fold, shuffle=True, random_state=42)
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
 # Tabs for TF and TF-IDF
 tab3, tab4 = st.tabs(["TF", "TF-IDF"])
