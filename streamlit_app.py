@@ -143,7 +143,7 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     st.write(f"F1-Score: {f1}")
     st.write(f"\nClassification Report:\n", classification_report(y_test, y_pred))
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(4, 3))
     sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
     plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}')
     plt.xlabel('Predicted label')
