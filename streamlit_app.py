@@ -108,7 +108,7 @@ with nav4:
     st.plotly_chart(fig_tgl, use_container_width=True)
 
 st.markdown("""---""")
-kf_fold = st.selectbox("Pilih Jumlah Lipatan","1,2,3,4,5")
+kf_fold = st.selectbox("Pilih Jumlah Lipatan","1","2","3","4","5")
 tab3, tab4 = st.tabs(["TF", "TF-IDF"])
 with tab3:
     st.write("TF")
