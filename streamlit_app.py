@@ -98,5 +98,5 @@ with nav4:
     tgl_counts = df_selection['created_at'].value_counts().reset_index()
     tgl_counts.columns = ['created_at', 'Count']
     custom_colors = ['#dc6e55']
-    fig_tgl = px.area(tgl_counts, x='createds_at', y='Count', title="Rentang Waktu Komentar", color_discrete_sequence=custom_colors)
+    fig_tgl = px.area(tgl_counts, x='created_at', y='Count', title="Rentang Waktu Komentar", color_discrete_sequence=custom_colors)
     st.plotly_chart(fig_tgl, use_container_width=True)
