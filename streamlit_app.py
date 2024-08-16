@@ -94,7 +94,6 @@ with nav3:
 
 
 with nav4:
-
     # Filter baris dengan sentimen Positif
     df_positive = df[df['Sentimen'] == 'Positif']
 
