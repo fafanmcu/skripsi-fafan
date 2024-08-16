@@ -66,11 +66,11 @@ nav3, nav4 = st.columns(2)
 with nav3:
     # Visualisasi hasil sentiment
     color_custom = ['#3ca9ee', '#e14b32']
-    sentiment = df_selection['sentiment'].value_counts()
+    sentiment = df_selection['Sentimen'].value_counts()
     fig_sentiment = go.Figure()
 
-    neg_df = df_selection[df_selection['Sentimen'] == 'negative']
-    pos_df = df_selection[df_selection['Sentimen'] == 'positive']
+    neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
+    pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
         
     if not neg_df.empty:
         color = ['#e14b32']
