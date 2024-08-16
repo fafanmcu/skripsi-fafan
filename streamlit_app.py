@@ -176,3 +176,12 @@ with tab4:
 
         print_metrics(y_test, y_pred, fold, "TF-IDF")
         fold += 1
+        
+#TF
+st.subtittle("TF")
+tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1","K-fold 2","K-fold 3","K-fold 4", "k-fold 5"])
+with tab5:
+with tab6:
+with tab7:
+with tab8:
+with tab9:
