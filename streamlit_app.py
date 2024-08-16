@@ -108,9 +108,72 @@ with nav4:
     st.plotly_chart(fig_tgl, use_container_width=True)
 
 st.markdown("""---""")
-kf_fold = st.selectbox("Pilih Jumlah Lipatan",("1","2","3","4","5"))
+kf_fold = int(st.selectbox("Pilih Jumlah Lipatan", ("1", "2", "3", "4", "5")))
+
+# Prepare data
+X = df['Stemming']
+y = df['Sentimen']
+
+# Define KFold cross-validation
+kf = KFold(n_splits=kf_fold, shuffle=True, random_state=42)
+
+# Tabs for TF and TF-IDF
 tab3, tab4 = st.tabs(["TF", "TF-IDF"])
+
+# Function to print and plot metrics
+def print_metrics(y_test, y_pred, fold, title_suffix):
+    cm = confusion_matrix(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted')
+
+    st.write(f"\nConfusion Matrix Fold {fold}")
+    st.write(cm)
+    st.write(f"Accuracy: {accuracy}")
+    st.write(f"Precision: {precision}")
+    st.write(f"Recall: {recall}")
+    st.write(f"F1-Score: {f1}")
+    st.write(f"\nClassification Report:\n", classification_report(y_test, y_pred))
+
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='viridis', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
+    plt.title(f'Confusion Matrix Fold {fold} - {title_suffix}')
+    plt.xlabel('Predicted label')
+    plt.ylabel('True label')
+    st.pyplot(plt)
+
+# Model definition
+model = MultinomialNB()
+
 with tab3:
     st.write("TF")
+    countVectorizer = CountVectorizer()
+    tf = countVectorizer.fit_transform(X).toarray()
+
+    fold = 1
+    for train_index, test_index in kf.split(tf):
+        X_train, X_test = tf[train_index], tf[test_index]
+        y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
+        print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
+        fold += 1
+
 with tab4:
     st.write("TF-IDF")
+    tfidfVectorizer = TfidfVectorizer(use_idf=True, smooth_idf=True)
+    tfidf = tfidfVectorizer.fit_transform(X).toarray()
+
+    fold = 1
+    for train_index, test_index in kf.split(tfidf):
+        X_train, X_test = tfidf[train_index], tfidf[test_index]
+        y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
+        print_metrics(y_test, y_pred, fold, "TF-IDF")
+        fold += 1
