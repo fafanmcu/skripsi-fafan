@@ -116,9 +116,6 @@ y = df['Sentimen']
 # Define KFold cross-validation
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
-# Tabs for TF and TF-IDF
-tab3, tab4 = st.tabs(["TF", "TF-IDF"])
-
 # Function to print and plot metrics
 def print_metrics(y_test, y_pred, fold, title_suffix):
     cm = confusion_matrix(y_test, y_pred)
@@ -142,14 +139,29 @@ def print_metrics(y_test, y_pred, fold, title_suffix):
     plt.ylabel('True label')
     st.pyplot(plt)
 
-# Model definition
 model = MultinomialNB()
+countVectorizer = CountVectorizer()
+tf = countVectorizer.fit_transform(X).toarray()
 
-with tab3:
-    st.write("TF")
-    countVectorizer = CountVectorizer()
-    tf = countVectorizer.fit_transform(X).toarray()
+st.write("TF-IDF")
+tfidfVectorizer = TfidfVectorizer(use_idf=True, smooth_idf=True)
+tfidf = tfidfVectorizer.fit_transform(X).toarray()
 
+fold = 1
+for train_index, test_index in kf.split(tfidf):
+X_train, X_test = tfidf[train_index], tfidf[test_index]
+y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print_metrics(y_test, y_pred, fold, "TF-IDF")
+fold += 1
+        
+#TF
+st.subtittle("TF")
+tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1","K-fold 2","K-fold 3","K-fold 4", "k-fold 5"])
+with tab5:
     fold = 1
     for train_index, test_index in kf.split(tf):
         X_train, X_test = tf[train_index], tf[test_index]
@@ -159,29 +171,3 @@ with tab3:
         y_pred = model.predict(X_test)
 
         print_metrics(y_test, y_pred, fold, "Count Vectorizer (TF)")
-        fold += 1
-
-with tab4:
-    st.write("TF-IDF")
-    tfidfVectorizer = TfidfVectorizer(use_idf=True, smooth_idf=True)
-    tfidf = tfidfVectorizer.fit_transform(X).toarray()
-
-    fold = 1
-    for train_index, test_index in kf.split(tfidf):
-        X_train, X_test = tfidf[train_index], tfidf[test_index]
-        y_train, y_test = y.iloc[train_index], y.iloc[test_index]
-
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
-
-        print_metrics(y_test, y_pred, fold, "TF-IDF")
-        fold += 1
-        
-#TF
-st.subtittle("TF")
-tab5, tab6, tab7, tab8, tab9 = st.tabs(["K-fold 1","K-fold 2","K-fold 3","K-fold 4", "k-fold 5"])
-with tab5:
-with tab6:
-with tab7:
-with tab8:
-with tab9:
