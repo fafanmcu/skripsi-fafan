@@ -65,7 +65,7 @@ with tab2:
 nav3, nav4 = st.columns(2)
 with nav3:
         # Visualisasi hasil sentiment
-    color_custom = ['#3ca9ee', '#e14b32']
+    color_custom = ['#e14b32', '#3ca9ee']
     Sentimen = df_selection['Sentimen'].value_counts()
     fig_sentiment = go.Figure()
     
@@ -89,6 +89,7 @@ with nav3:
         
         fig_sentiment.update_layout(title=f"Persentase Sentimen Twitter")
         st.plotly_chart(fig_sentiment, use_container_width=True)
+
 
 with nav4:
     st.write("Ini Nav2")
