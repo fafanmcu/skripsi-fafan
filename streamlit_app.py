@@ -69,8 +69,8 @@ with nav3:
     Sentimen = df_selection['Sentimen'].value_counts()
     fig_sentiment = go.Figure()
 
-    pos_df = df_selection[df_selection['Sentimen'] == 'Positif']
-    neg_df = df_selection[df_selection['Sentimen'] == 'Negatif']
+    pos_df = df_selection['Sentimen'].loc[df_selection['Sentimen'] == 'Positif']
+    neg_df = df_selection['Sentimen'].loc[df_selection['Sentimen'] == 'Negatif']
         
     if not neg_df.empty:
         color = ['#3ca9ee']
