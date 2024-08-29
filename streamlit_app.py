@@ -20,7 +20,7 @@ st.set_page_config(
 st.header('Sentimen Analisis Pemindahan Ibu Kota Negara ke Ibu Kota Nusantara')
 st.markdown("""---""")
 
-data = pd.read_excel('ikn-maret-juni-dengan-label.xlsx')
+data = pd.read_excel('ikn-januari-juni-dengan-label.xlsx')
 
 # mengubah nilai kolom dan menghapus sentimen yang kosong
 mapping = {1: 'Positif', 2: 'Negatif'}
